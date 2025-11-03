@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Bubbling Example</title>
+  <style>
+    #container {
+      border: 2px solid red;
+      width: 650px;
+      height: 150px;
+      padding: 10px;
+    }
+
+    .item {
+      border: 1px solid green;
+      margin-top: 9px;
+      padding: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <ul id="container">
+    <li class="item">A</li>
+    <li class="item">B</li>
+    <li class="item">C</li>
+    <li class="item">D</li>
+  </ul>
+
+  <script>
+    const container = document.getElementById("container");
+    const items = document.querySelectorAll(".item");
+
+    // Listener on parent (UL)
+    container.addEventListener("click", () => {
+      console.log("Container clicked!");
+      container.style.backgroundColor = "lightgray";
+    });
+
+    // Listener on each child (LI)
+    items.forEach(item => {
+      item.addEventListener("click", () => {
+        console.log("List item clicked:", item.textContent);
+        item.style.backgroundColor = "lightgreen";
+      });
+    });
+  </script>
+</body>
+</html>
